@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\Images\\products\\10967363.jpg"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\10e2bb55-2493-472e-9630-bd140b8f3b52.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\10e2bb55-2493-472e-9630-bd140b8f3b52.jpg"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\11677601.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\11677601.jpg"
     },
@@ -45,8 +49,20 @@
       "PackagePath": "staticwebassets\\Images\\products\\22866337.jpg"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif",
+      "PackagePath": "staticwebassets\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\35640104.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\35640104.jpg"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\395ee9ef-b3f4-4871-955d-e8c0b6b093d9_1.avif",
+      "PackagePath": "staticwebassets\\Images\\products\\395ee9ef-b3f4-4871-955d-e8c0b6b093d9_1.avif"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\3ff7c8d4-c182-4bc2-9976-9840be4e5096_github.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\3ff7c8d4-c182-4bc2-9976-9840be4e5096_github.jpg"
     },
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\41732775.jpg",
@@ -123,6 +139,14 @@
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\97815739.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\97815739.jpg"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\b94e4436-7b63-4242-955d-6d10ba11fc54_421861386_1800448833736636_8154674031129294971_n.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\b94e4436-7b63-4242-955d-6d10ba11fc54_421861386_1800448833736636_8154674031129294971_n.jpg"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\bd04878c-3539-49b4-b011-8e3124d000df.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\bd04878c-3539-49b4-b011-8e3124d000df.jpg"
     },
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\css\\site.css",

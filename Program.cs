@@ -1,4 +1,6 @@
 using E_Commerce2.Data;
+using E_Commerce2.Services.IServices;
+using E_Commerce2.Services.MServices;
 using E_Commerce2.UnitOfWorkk;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +20,8 @@ namespace E_Commerce2
                 .UseSqlServer(builder.Configuration.GetConnectionString("cs")));
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+
 
             var app = builder.Build();
 
