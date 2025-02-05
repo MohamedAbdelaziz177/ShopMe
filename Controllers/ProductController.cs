@@ -20,10 +20,21 @@ namespace E_Commerce2.Controllers
             this.productService = productService;
         }
 
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Index(string search)
         {
             var lst = await unitOfWork.ProductRepo.GetAllAsync();
-            return View(lst);
+           
+
+            if (search == null)
+            {
+                ViewData["search"] = search;
+                return View(lst);
+            }
+            else {
+                var filtered = lst.Where(x => x.Name.Contains(search) || x.Brand.Contains(search)).ToList();
+                return View(filtered); 
+            }
         }
 
        
@@ -61,10 +72,21 @@ namespace E_Commerce2.Controllers
             return View(prodVM);
         }
 
+        /*
+        [HttpPost]
+        public async Task<IActionResult> SaveEdit(ProductCreateUpdateVM prod)
+        {
+            var product = await unitOfWork.ProductRepo.GetByIdAsync(id);
+        }
+
+        */
+
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await unitOfWork.ProductRepo.deleteAsync(id);
             return RedirectToAction("Index");
         }
+
+        
     }
 }

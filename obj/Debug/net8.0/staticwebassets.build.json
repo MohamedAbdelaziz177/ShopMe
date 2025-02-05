@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ufin4E9gO9eMzYv2T64ogDaYNBq0CA9czO1xjo5VoBE=",
+  "Hash": "mgGVOji8MfhZF4I8rv+5RZfKKUACtLdBjiyC7UENcnw=",
   "Source": "E-Commerce2",
   "BasePath": "_content/E-Commerce2",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\icon.png",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\icon.png"
     },
     {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\10590390.jpg",
@@ -300,6 +319,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\products\\22866337.jpg"
+    },
+    {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/products/2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\products\\2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg"
     },
     {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif",

@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\E-Commerce2.bundle.scp.css"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\icon.png",
+      "PackagePath": "staticwebassets\\Images\\icon.png"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\10590390.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\10590390.jpg"
     },
@@ -47,6 +51,10 @@
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\22866337.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\22866337.jpg"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg"
     },
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif",
