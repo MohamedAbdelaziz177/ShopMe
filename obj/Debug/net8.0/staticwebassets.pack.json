@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\E-Commerce2.bundle.scp.css"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\hero.png",
+      "PackagePath": "staticwebassets\\Images\\hero.png"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\icon.png",
       "PackagePath": "staticwebassets\\Images\\icon.png"
     },

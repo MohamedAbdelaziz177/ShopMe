@@ -1,0 +1,21 @@
+﻿
+@model Product
+
+<div class="col-lg-3 col-md-6">
+    <div class="rounded border shadow p-3 text-center h-100">
+        @* <td><img src = "Images/products/@product.ImageFileName" width="100"></img></td>*@
+        <img src="~/Images/products/@Model.ImageFileName" class="img-fluid" alt="..."
+             style="height: 180px; object-fit: contain" />
+        <hr />
+        <h5 class="py-2">@Model.Name</h5>
+        <p>
+            Brand:@Model.Brand, Category: @Model.Category
+        </p>
+        <h4 class="mb-3">@(Model.Price)$</h4>
+        <a class="btn btn-primary btn-sm mb-2" asp-controller="Store"
+           asp-action="Details" asp-route-id="@Model.Id" role="button">Details</a>
+        <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @Model.Id)">
+            Add to Cart <i class="bi bi-cart4"></i>
+        </button>
+    </div>
+</div>

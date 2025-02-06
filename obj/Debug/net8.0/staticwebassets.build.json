@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mgGVOji8MfhZF4I8rv+5RZfKKUACtLdBjiyC7UENcnw=",
+  "Hash": "SF2ij/RDen6vav4DEs4nsUeydv1ksegYD56iQwBZlJw=",
   "Source": "E-Commerce2",
   "BasePath": "_content/E-Commerce2",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\hero.png",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/hero.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\hero.png"
     },
     {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\icon.png",
