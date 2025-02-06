@@ -161,6 +161,10 @@
       "PackagePath": "staticwebassets\\Images\\products\\bd04878c-3539-49b4-b011-8e3124d000df.jpg"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\d425a3d6-bd0d-4c7d-9352-838be5ae4956.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\d425a3d6-bd0d-4c7d-9352-838be5ae4956.jpg"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -33,7 +33,7 @@ namespace E_Commerce2.Services.MServices
         }
 
 
-       public async Task SaveProduct(ProductCreateUpdateVM prod)
+       public async Task SaveProduct(ProductVM prod)
        {
             string imgUrl = await CreateImgUrl(prod.ImageFile);
 
@@ -52,7 +52,7 @@ namespace E_Commerce2.Services.MServices
         }
 
 
-        public async Task<ProductCreateUpdateVM> IntializeProductVM()
+        public List<SelectListItem> GetAllCategories()
         {
             var cats = new List<SelectListItem>(){
                     new SelectListItem { Text = "Other", Value = "Other"},
@@ -64,12 +64,61 @@ namespace E_Commerce2.Services.MServices
 
                 };
 
-            ProductCreateUpdateVM prod = new ProductCreateUpdateVM() { categories = cats };
+            return cats;
+        }
+
+        public  List<SelectListItem> GetAllBrands()
+        {
+            var brands = new List<SelectListItem>(){
+                    new SelectListItem { Text = "Samsung", Value = "Samsung"},
+                    new SelectListItem { Text = "Apple", Value = "Apple"},
+                    new SelectListItem { Text = "Nokia", Value = "Nokia"},
+                    new SelectListItem { Text = "HP", Value = "HP"},
+                    new SelectListItem { Text = "All Brands", Value = "All Brands"}
+
+
+                };
+
+            return brands;
+        }
+
+
+        public List<SelectListItem> GetAllsortings()
+        {
+            var sorts = new List<SelectListItem>(){
+                    new SelectListItem { Text = "Order By Newest", Value = "newest"},
+                    new SelectListItem { Text = "Price: Low to High", Value = "price_asc"},
+                    new SelectListItem { Text = "Price: High to Low", Value = "price_desc"}
+
+                };
+
+
+            return sorts;
+        }
+
+
+
+
+        public async Task<ProductVM> IntializeProductVM()
+        {
+            var cats = new List<SelectListItem>(){
+                    new SelectListItem { Text = "Other", Value = "Other"},
+                    new SelectListItem { Text = "Phones", Value = "Phones"},
+                    new SelectListItem { Text = "Computers", Value = "Computers"},
+                    new SelectListItem { Text = "Accessories", Value = "Accessories"},
+                    new SelectListItem { Text = "Printers", Value = "Printers"},
+                    new SelectListItem { Text = "Cameras", Value = "Cameras"}
+
+                };
+
+
+
+            ProductVM prod = new ProductVM() { categories = cats};
 
             return prod;
         }
 
-        public async Task<ProductCreateUpdateVM> MapProductModelToVM(Product product)
+        public async Task<ProductVM> MapProductModelToVM(Product product)
         {
            
             var prod = await IntializeProductVM();

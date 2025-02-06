@@ -46,37 +46,53 @@ namespace E_Commerce2.Controllers
             }
         }
 
-        public async Task <IActionResult> GetNewestProducts(string search, int pageIndex)
+        public async Task <IActionResult> GetNewestProducts(string? search, string? cat, string? brand, string? sorting ,int pageIndex = 1)
         {
             var lst = await unitOfWork.ProductRepo.GetAllAsync();
-            lst = lst.OrderByDescending(x => x.Id).ToList();
+
+
+            if(search != null)
+                lst = lst.Where(x => x.Name.Contains(search)).ToList();
+
+            if(cat != null && cat != "All Categories")
+                lst = lst.Where(x => x.Category.Contains(cat)).ToList();
+
+            if(brand != null && brand != "All brands")
+                lst = lst.Where(x => x.Brand.Contains(brand)).ToList();
+
+            if (sorting == "newest")
+                lst = lst.OrderByDescending(x => x.Id).ToList();
+            else if (sorting == "price_asc")
+                lst = lst.OrderBy(x => x.Price).ToList();
+
+            else lst = lst.OrderByDescending(x => x.Price).ToList();
 
             int productCount = lst.Count();
             int TotalPages =  (int) Math.Ceiling(productCount * 1.00 / PageSize);
 
-           if (search != null)
-               lst = lst.Where(x => x.Name.Contains(search) || x.Brand.Contains(search)).ToList();
 
-            if (pageIndex < 1)
-            {
-                ViewData["search"] = search;
-                ViewData["PageIndex"] = 0;
-                ViewData["PageSize"] = PageSize;
-                ViewData["TotalPages"] = TotalPages;
 
-                return View(lst);
-            }
-
-            else
-            {
-                ViewData["search"] = search;
-                ViewData["PageIndex"] = pageIndex;
-                ViewData["PageSize"] = PageSize;
-                ViewData["TotalPages"] = TotalPages;
-
+            if (pageIndex > 1)
                 lst = lst.Skip(PageSize * (pageIndex - 1)).Take(PageSize).ToList();
-                return View(lst);
-            }
+                
+            
+
+            ViewData["search"] = search;
+            ViewData["category"] = cat;
+            ViewData["brand"] = brand;
+            ViewData["sorting"] = sorting;
+
+            ViewData["PageIndex"] = pageIndex;
+            ViewData["PageSize"] = PageSize;
+            ViewData["TotalPages"] = TotalPages;
+
+            ViewData["categories"] =  productService.GetAllCategories();
+            ViewData["brands"] = productService.GetAllBrands();
+            ViewData["sorts"] = productService.GetAllsortings();
+
+
+            return View(lst);
+
 
         }
 
@@ -91,7 +107,7 @@ namespace E_Commerce2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveNewProduct(ProductCreateUpdateVM prod)
+        public async Task<IActionResult> SaveNewProduct(ProductVM prod)
         {
 
             if(prod.ImageFile == null)

@@ -4,12 +4,70 @@
 
 <h2 class="pb-4 text-center">Products</h2>
 
+
+
+<form class="row g-3 mb-3" asp-action="GetNewestProducts" method="get">
+
+
+
+    <div class="col-lg-2 col-md-4">
+
+        <label name="cat" class="control-label">Select Category: </label>
+        <select class="form-select" name="cat" value="@ViewBag.category" onchange="this.form.submit()" >
+            <option value="">All Categories</option>
+            @foreach (var item in ViewBag.categories as List<SelectListItem>)
+            {
+                <option value="@item.Value" selected="@(item.Value == ViewBag.category?.ToString() ? "selected" : null)">@item.Text</option>
+            }
+        </select>
+    </div>
+
+  
+
+    <div class="col-lg-2 col-md-4">
+
+        <label name="brand" class="control-label">Select Brand: </label>
+        <select class="form-select" name="brand" value = "@ViewBag.brand" onchange="this.form.submit()" >
+            <option value="">All Brands</option>
+            @foreach (var item in ViewBag.brands as List<SelectListItem>)
+            {
+                <option value="@item.Value" selected="@(item.Value == ViewBag.brand?.ToString() ? "selected" : null)">@item.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-lg-2 col-md-4">
+
+        <label name="sorting" class="control-label">Order By: </label>
+        <select class="form-select" name="sorting" value="@ViewBag.sorting" onchange="this.form.submit()" >
+            <option></option>
+            @foreach (var item in ViewBag.sorts as List<SelectListItem>)
+            {
+                <option value="@item.Value" selected="@(item.Value == ViewBag.sorting?.ToString() ? "selected" : null)">@item.Text</option>
+            }
+
+        </select>
+    </div>
+
+
+
+    <div class="col-lg-6 col-md-12 d-flex">
+        <input class="form-control me-2" name="search" value="@ViewBag.search"  placeholder="Search by Name">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </div>
+
+    </form>
+  
+
+    
+      
 <div class="row mb-5 g-3">
     @foreach (var product in Model)
     {
      <partial name="ProductCardPartial" model="product"></partial>   
     }
 </div>
+
 
 <nav>
     <ul class="pagination">

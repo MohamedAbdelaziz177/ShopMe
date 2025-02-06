@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce2.ViewModels.ProductVM_s
 {
-    public class ProductCreateUpdateVM
+    public class ProductVM
     {
 
         public int Id { get; set; }
@@ -30,7 +30,10 @@ namespace E_Commerce2.ViewModels.ProductVM_s
         public DateTime? CreatedAt { get; set; }
 
         public IEnumerable<SelectListItem> categories { get; set; } = Enumerable.Empty<SelectListItem>();
+        public IEnumerable<SelectListItem> brands { get; set; } = Enumerable.Empty<SelectListItem>();
 
-        
+        public IEnumerable<SelectListItem> sortings { get; set; } = Enumerable.Empty<SelectListItem>();
+
+
     }
 }
