@@ -217,6 +217,10 @@ namespace E_Commerce2.Controllers
             return RedirectToAction("Index", "Home");
 		}
 
+		
+
+
+
 
 
 	}
