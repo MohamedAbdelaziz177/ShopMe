@@ -1,7 +1,9 @@
 using E_Commerce2.Data;
+using E_Commerce2.Models;
 using E_Commerce2.Services.IServices;
 using E_Commerce2.Services.MServices;
 using E_Commerce2.UnitOfWorkk;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce2
@@ -19,11 +21,25 @@ namespace E_Commerce2
                 (options => options
                 .UseSqlServer(builder.Configuration.GetConnectionString("cs")));
 
+
+            builder.Services.AddIdentity<AppUser, IdentityRole>(
+    options =>
+    {
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+    })
+    .AddEntityFrameworkStores<AppDbContext>();
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
 
             var app = builder.Build();
+
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

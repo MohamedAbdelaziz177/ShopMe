@@ -1,9 +1,11 @@
 ﻿using E_Commerce2.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce2.Data
 {
-    public class AppDbContext : DbContext 
+    public class AppDbContext : IdentityDbContext<AppUser> 
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
@@ -12,6 +14,6 @@ namespace E_Commerce2.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Product> Products { get; set; }
+       DbSet<Product> Products { get; set; }
     }
 }
