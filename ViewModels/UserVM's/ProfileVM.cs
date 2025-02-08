@@ -13,7 +13,7 @@ namespace E_Commerce2.ViewModels.UserVM_s
         [Required, EmailAddress, MaxLength(100)]
         public string Email { get; set; } 
 
-        [Phone(ErrorMessage = "The format of the Phone Number is not valid"), MaxLength(20)]
+        [Required, Phone(ErrorMessage = "The format of the Phone Number is not valid"), MaxLength(20)]
         public string? PhoneNumber { get; set; }
 
         [Required, MaxLength(200)]

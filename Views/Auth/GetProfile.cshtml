@@ -14,14 +14,14 @@
 		<h2 class="mb-3">Profile</h2>
 		<hr />
 
-		@if (ViewBag.ErrorMessage != null)
+		@if (ViewBag.ErrorMsg != null)
 		{
 			<div class='alert alert-danger alert-dismissible fade show' role='alert'>
 				<strong>@ViewBag.ErrorMessage</strong>
 				<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
 			</div>
 		}
-		else if (ViewBag.SuccessMessage != null)
+		else if (ViewBag.SuccessMsg != null)
 		{
 			<div class='alert alert-success alert-dismissible fade show' role='alert'>
 				<strong>@ViewBag.SuccessMessage</strong>
@@ -93,7 +93,7 @@
 			</div>
 			<div class="modal-body">
 
-				<form method="post" asp-action="SaveEdit" asp-controller="Profile">
+				<form method="post" asp-action="SaveEditProfile" asp-controller="Auth">
 					<div class="row mb-2">
 						<label class="col-sm-4 col-form-label">First Name</label>
 						<div class="col-sm-8">
@@ -149,3 +149,9 @@
 		</div>
 	</div>
 </div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

@@ -7,5 +7,7 @@ namespace E_Commerce2.Services.IServices
     {
         AppUser MapVMtoModel(UserRegisterVM model);
 		ProfileVM MapModelToVM(AppUser model);
-	}
+
+        AppUser MapVMtoModel(AppUser user, ProfileVM userVM);
+    }
 }
