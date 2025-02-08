@@ -11,12 +11,17 @@ namespace E_Commerce2.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IAuthService authService;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IAuthService authService)
+        public AuthController(UserManager<AppUser> userManager,
+                              SignInManager<AppUser> signInManager,
+                              IAuthService authService,
+                              RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.authService = authService;
+            this.roleManager = roleManager;
         }
 
         public IActionResult Index()
@@ -36,7 +41,7 @@ namespace E_Commerce2.Controllers
         {
             if(!ModelState.IsValid) 
             {
-                return View(userVM);
+                return View("Register", userVM);
             }
 
 
@@ -51,10 +56,10 @@ namespace E_Commerce2.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
 
-                return View(userVM);
-            }
+				return View("Register", userVM);
+			}
 
-            var roleAssignRes = await userManager.AddToRoleAsync(newUser, "customer");
+            var roleAssignRes = await userManager.AddToRoleAsync(newUser, "Customer");
 
             if(!roleAssignRes.Succeeded)
             {
@@ -63,14 +68,15 @@ namespace E_Commerce2.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
 
-                return View(userVM);
-            }
+				return View("Register", userVM);
+			}
 
 
             await signInManager.SignInAsync(newUser, false);
 
 
-            return View(userVM);
+            return RedirectToAction("Index", "Home");
+
         }
 
         [HttpGet]
@@ -98,19 +104,60 @@ namespace E_Commerce2.Controllers
             if (isValid) 
             {
                 await signInManager.SignInAsync(userExists, user.RememberMe);
+                return RedirectToAction("Index", "Home");
+
             }
 
             return View(user);
         }
 
-        /*
-           
+        
+        public async Task<IActionResult> Logout()
+        {
+            if(User.Identity.IsAuthenticated)
+            {
+                await signInManager.SignOutAsync();
+            }
 
-        public IActionResult Logout()
-        { 
+            return RedirectToAction("Index", "Home");
         }
-         
+
+
+        [HttpGet]
+		public async Task<IActionResult> GetProfile()
+		{
+            var appUser = await userManager.GetUserAsync(User);
+
+            if (appUser == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+			var profileVM = authService.MapModelToVM(appUser);
+
+			return View(profileVM);
+		}
+
+		/*
+        [HttpGet]
+        public async Task<IActionResult> EditProfile()
+        {
+
+        }
+
+        */
+
+		/*
+         public async Task<IActionResult> SaveEditProfile(ProfileVM profile)
+		{
+
+		}
          */
 
-    }
+		
+		
+
+
+
+	}
 }

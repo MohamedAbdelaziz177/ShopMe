@@ -16,8 +16,21 @@ namespace E_Commerce2.Services.MServices
             newUser.UserName = userVM.Email;
             newUser.PhoneNumber = userVM.PhoneNumber;
             newUser.CreatedAt = DateTime.Now;
+            newUser.Address = userVM.Address;
 
             return newUser;
         }
-    }
+
+		public ProfileVM MapModelToVM(AppUser appUser)
+		{
+			var profileVM = new ProfileVM();
+
+			profileVM.FirstName = appUser.FirstName;
+			profileVM.LastName = appUser.LastName;
+			profileVM.PhoneNumber = appUser.PhoneNumber;
+			profileVM.Email = appUser.Email;
+
+            return profileVM;
+		}
+	}
 }
