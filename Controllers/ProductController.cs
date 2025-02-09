@@ -96,6 +96,14 @@ namespace E_Commerce2.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+             var product = await unitOfWork.ProductRepo.GetByIdAsync(id);
+
+            return View(product);
+        }
+
 
 
        
@@ -147,6 +155,8 @@ namespace E_Commerce2.Controllers
             await unitOfWork.ProductRepo.deleteAsync(id);
             return RedirectToAction("Index");
         }
+
+
 
         
     }
