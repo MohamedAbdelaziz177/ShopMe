@@ -15,5 +15,8 @@ namespace E_Commerce2.Data
         }
 
        DbSet<Product> Products { get; set; }
+       DbSet<Cart> Carts { get; set; }
+       DbSet<OrderItem> OrderItems { get; set; }
+       DbSet<Order> Orders { get; set; }
     }
 }
