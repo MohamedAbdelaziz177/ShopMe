@@ -35,6 +35,7 @@ namespace E_Commerce2
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<ICartService, CartService>();
 
 
             var app = builder.Build();
