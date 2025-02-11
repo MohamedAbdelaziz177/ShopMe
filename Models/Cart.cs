@@ -14,6 +14,8 @@ namespace E_Commerce2.Models
 
         public DateTime UpdatedAt { get; set; }
 
+       
+
         // public decimal Total { get; set; }
 
         public Product Product { get; set; } = new Product();

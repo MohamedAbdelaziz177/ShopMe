@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Claims;
 
 namespace E_Commerce2.Controllers
 {
@@ -48,6 +49,9 @@ namespace E_Commerce2.Controllers
 
         public async Task <IActionResult> GetNewestProducts(string? search, string? cat, string? brand, string? sorting ,int pageIndex = 1)
         {
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             var lst = await unitOfWork.ProductRepo.GetAllAsync();
 
 
@@ -90,18 +94,34 @@ namespace E_Commerce2.Controllers
             ViewData["brands"] = productService.GetAllBrands();
             ViewData["sorts"] = productService.GetAllsortings();
 
+            
+
+            foreach (var item in lst)
+            {
+                bool isCarted = await unitOfWork.CartRepo.GetCartByProductAndUser(item.Id, userId);
+                int id = item.Id;
+
+                ViewBag.id = (isCarted) ? id : -1;
+            }
+            
 
             return View(lst);
 
 
         }
 
+       
+
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
              var product = await unitOfWork.ProductRepo.GetByIdAsync(id);
+             var UserId =  User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return View(product);
+             ViewData["isCarted"] = await unitOfWork.CartRepo.GetCartByProductAndUser(id, UserId);
+
+             return View(product);
         }
 
 

@@ -1,0 +1,40 @@
+﻿@using E_Commerce2.ViewModels.CartVM_s;
+@model CartVM
+<tr>
+    <td>
+        <img src="~/Images/products/@Model.ProductImg" width="100" class="rounded" alt="...">
+    </td>
+    <td>
+        <h4>@Model.ProductName</h4>
+        <p>
+            Brand: @Model.ProductBrand<br>
+            Category: @Model.ProductCategory<br>
+            Price: @(Model.Price)$
+        </p>
+    </td>
+    <td style="white-space:nowrap">
+
+        <div class="quantity-controls d-flex align-items-center">
+        <form asp-action="IncCartQuantity" asp-controller="Cart" asp-route-CartID="@Model.Id">
+            <button type="submit" class="btn btn-outline-secondary btn-sm">                
+                +
+            </button>
+        </form>
+        
+
+        <span class="border rounded-3 p-2 m-1">@Model.Quantity</span>
+
+        <form asp-action="DecCartQuantity" asp-controller="Cart" asp-route-CartID="@Model.Id">
+            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                -
+            </button>
+        </form>
+        </div>
+        
+    </td>
+    <td>@(Model.Price * Model.Quantity)$</td>
+    <td>
+        <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-CartId="@Model.Id"><i class="bi bi-trash text-danger h4" style="cursor: pointer"></i></a>
+    </td>
+</tr>
+

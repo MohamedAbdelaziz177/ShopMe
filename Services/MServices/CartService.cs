@@ -1,6 +1,8 @@
-﻿using E_Commerce2.Services.IServices;
+﻿using E_Commerce2.Models;
+using E_Commerce2.Services.IServices;
 using E_Commerce2.UnitOfWorkk;
 using E_Commerce2.ViewModels.CartVM_s;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce2.Services.MServices
 {
@@ -13,29 +15,49 @@ namespace E_Commerce2.Services.MServices
             this.unitOfWork = unitOfWork;
         }
 
-        public Task AddToCart(int productId, int userId)
+        public async Task<bool> inCart(int productId, string userID)
         {
-            throw new NotImplementedException();
+            bool isFound = await unitOfWork.CartRepo.GetCartByProductAndUser(productId, userID);
+            return isFound;
         }
 
-        public Task EditQuantity(CartVM cartVM)
+        public async Task<List<CartVM>> MapCartsToVMs(List<Cart> carts)
         {
-            throw new NotImplementedException();
+            var lst = new List<CartVM>();
+
+            foreach (var cart in carts)
+            {
+                lst.Add(await MapCartToVM(cart));
+            }
+
+            return lst;
         }
 
-        public Task<List<CartVM>> GetAllCarts(int userId)
+        public async Task<CartVM> MapCartToVM(Cart cart)
         {
-            throw new NotImplementedException();
+            var allCarts = await unitOfWork.CartRepo.GetAllAsync();
+            var allProducts = await  unitOfWork.ProductRepo.GetAllAsync();
+
+
+            var result =  (from Carts in allCarts
+                                join product in allProducts on cart.ProductId equals product.Id
+                                where Carts.Id == cart.Id
+                                select new CartVM
+                                {
+                                    Id = cart.Id,
+                                    UserId = cart.CustomerId,
+                                    ProductId = cart.ProductId,
+                                    Quantity = cart.quantity,
+                                    ProductImg = product.ImageFileName,
+                                    ProductName = product.Name,
+                                    ProductCategory = product.Category,
+                                    ProductBrand = product.Brand,
+                                    Price = product.Price
+                                }).FirstOrDefault();
+
+            return result;
+
         }
 
-        public Task<CartVM> GetCartVMbyCartId(int Cartid, int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<decimal> getTheTotalCost(int userId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

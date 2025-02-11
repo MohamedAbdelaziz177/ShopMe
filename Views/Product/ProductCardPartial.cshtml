@@ -1,6 +1,10 @@
 ﻿
 @model Product
 
+@{
+    int id = Model.Id;
+}
+
 <div class="col-lg-3 col-md-6">
     <div class="rounded border shadow p-3 text-center h-100">
         @* <td><img src = "Images/products/@product.ImageFileName" width="100"></img></td>*@
@@ -14,8 +18,20 @@
         <h4 class="mb-3">@(Model.Price)$</h4>
         <a class="btn btn-primary btn-sm mb-2" asp-controller="Product"
            asp-action="Details" asp-route-id="@Model.Id" role="button">Details</a>
-        <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @Model.Id)">
-            Add to Cart <i class="bi bi-cart4"></i>
-        </button>
+
+        @if (ViewBag.id == -1)
+        {
+            <a class="btn btn-warning btn-sm mb-2" asp-controller="Cart" asp-action="AddToCart" asp-route-ProductId="@Model.Id">
+                Add to Cart <i class="bi bi-cart4"></i>
+            </a>
+        }
+        else
+        {
+            <a class="btn btn-warning btn-sm mb-2" href="#">
+                Added <i class="bi bi-cart4"></i>
+            </a>
+        }
+       
+
     </div>
 </div>

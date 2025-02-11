@@ -5,12 +5,12 @@ namespace E_Commerce2.Services.IServices
 {
     public interface ICartService
     {
-        public Task AddToCart(int productId, int userId);
 
-        public Task<List<CartVM>> GetAllCarts(int userId);
-        public Task<decimal> getTheTotalCost(int userId);
-        public Task EditQuantity(CartVM cartVM);
 
-        public Task<CartVM> GetCartVMbyCartId(int Cartid, int userId);
+         Task<List<CartVM>> MapCartsToVMs(List<Cart> carts);
+
+         Task<CartVM> MapCartToVM(Cart cart);
+
+        Task<bool> inCart(int productId, string UserId);
     }
 }

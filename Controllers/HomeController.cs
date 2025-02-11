@@ -1,4 +1,5 @@
 using E_Commerce2.Models;
+using E_Commerce2.UnitOfWorkk;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,19 @@ namespace E_Commerce2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUnitOfWork unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
+            this.unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var lst = await unitOfWork.ProductRepo.GetAllAsync();
+            lst = lst.Take(3).ToList();
+            return View(lst);
         }
 
         public IActionResult Privacy()

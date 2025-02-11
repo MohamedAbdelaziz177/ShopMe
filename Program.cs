@@ -3,6 +3,7 @@ using E_Commerce2.Models;
 using E_Commerce2.Services.IServices;
 using E_Commerce2.Services.MServices;
 using E_Commerce2.UnitOfWorkk;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,8 +38,16 @@ namespace E_Commerce2
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICartService, CartService>();
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Redirect here when unauthorized
+    });
+
 
             var app = builder.Build();
+
+
 
 
 

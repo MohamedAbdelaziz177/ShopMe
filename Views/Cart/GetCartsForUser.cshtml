@@ -1,0 +1,26 @@
+﻿@using E_Commerce2.ViewModels.CartVM_s;
+@model List<CartVM>
+
+<div class="row border rounded-3">
+    <div class="col-md-8 p-3">
+        <h4>Shopping Cart</h4>
+        <hr />
+
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                <strong>@ViewBag.ErrorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <table class="table align-middle">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                  @**@  <partial name="CartItemPartial" model="@item"></partial>
+                }
+            </tbody>
+        </table>
+    </div>
