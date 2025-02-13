@@ -99,7 +99,7 @@ namespace E_Commerce2.Services.MServices
 
 
 
-        public async Task<ProductVM> IntializeProductVM()
+        public  ProductVM IntializeProductVM()
         {
             var cats = new List<SelectListItem>(){
                     new SelectListItem { Text = "Other", Value = "Other"},
@@ -118,10 +118,10 @@ namespace E_Commerce2.Services.MServices
             return prod;
         }
 
-        public async Task<ProductVM> MapProductModelToVM(Product product)
+        public  ProductVM MapProductModelToVM(Product product)
         {
            
-            var prod = await IntializeProductVM();
+            var prod =  IntializeProductVM();
           //  string imgUrl = await CreateImgUrl(prod.ImageFile);
 
             prod.Brand = product.Brand;

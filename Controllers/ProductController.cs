@@ -128,9 +128,9 @@ namespace E_Commerce2.Controllers
 
        
         [HttpGet]
-        public async Task<IActionResult> AddNewProduct()
+        public  IActionResult AddNewProduct()
         {
-            var prodVM = await productService.IntializeProductVM();
+            var prodVM =  productService.IntializeProductVM();
             return View(prodVM);
         }
 
@@ -156,7 +156,7 @@ namespace E_Commerce2.Controllers
         {
             var product = await unitOfWork.ProductRepo.GetByIdAsync(id);
 
-            var prodVM = await productService.MapProductModelToVM(product);
+            var prodVM =  productService.MapProductModelToVM(product);
 
             return View(prodVM);
         }

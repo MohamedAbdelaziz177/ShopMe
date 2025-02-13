@@ -9,9 +9,9 @@ namespace E_Commerce2.Services.IServices
          Task<string> CreateImgUrl(IFormFile img);
          Task SaveProduct(ProductVM prod);
 
-         Task<ProductVM> IntializeProductVM();
+         ProductVM IntializeProductVM();
 
-        Task<ProductVM> MapProductModelToVM(Product product);
+        ProductVM MapProductModelToVM(Product product);
 
         List<SelectListItem> GetAllCategories();
 
