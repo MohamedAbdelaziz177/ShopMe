@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_Commerce2.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce2.ViewModels.OderVM_s
 {
-    public class OrderVM
+    public class ConfirmOrderVM
     {
         public int Id { get; set; }
 
@@ -11,6 +12,6 @@ namespace E_Commerce2.ViewModels.OderVM_s
         public string DeliveryAddress { get; set; } = "";
         public string PaymentMethod { get; set; } = "";
 
-        public decimal? SubTotal { get; set; }
+        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
     }
 }

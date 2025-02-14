@@ -7,6 +7,10 @@ namespace E_Commerce2.UnitOfWorkk
         IProductRepo ProductRepo { get; }
         ICartRepo CartRepo { get; }
 
+        IOrderRepo OrderRepo { get; }
+
+        IOrderItemRepo OrderItemRepo { get; }
+
         Task<int> Complete();
     }
 }

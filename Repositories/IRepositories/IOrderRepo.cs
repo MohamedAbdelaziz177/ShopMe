@@ -1,6 +1,8 @@
-﻿namespace E_Commerce2.Repositories.IRepositories
+﻿using E_Commerce2.Models;
+
+namespace E_Commerce2.Repositories.IRepositories
 {
-    public class IOrderRepo
+    public interface IOrderRepo : IGenericRepo<Order>
     {
     }
 }

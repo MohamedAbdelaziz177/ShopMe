@@ -23,20 +23,21 @@ namespace E_Commerce2
                 .UseSqlServer(builder.Configuration.GetConnectionString("cs")));
 
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>(
-    options =>
-    {
-        options.Password.RequiredLength = 6;
-        options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequireLowercase = false;
-    })
+            builder.Services.AddIdentity<AppUser, IdentityRole>( options =>
+
+            {
+                      options.Password.RequiredLength = 6;
+                      options.Password.RequireNonAlphanumeric = false;
+                      options.Password.RequireUppercase = false;
+                      options.Password.RequireLowercase = false;
+            })
     .AddEntityFrameworkStores<AppDbContext>();
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
