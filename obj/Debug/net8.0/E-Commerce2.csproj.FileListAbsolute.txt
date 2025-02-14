@@ -147,3 +147,4 @@ F:\E-Commerce2\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCor
 F:\E-Commerce2\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 F:\E-Commerce2\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 F:\E-Commerce2\obj\Debug\net8.0\E-Commerce2.sourcelink.json
+F:\E-Commerce2\bin\Debug\net8.0\Newtonsoft.Json.dll

@@ -100,11 +100,13 @@ namespace E_Commerce2.Controllers
 
         public async Task<IActionResult> DecCartQuantity(int CartID)
         {
-            if(CartID == 0)
+            var cart = await unitOfWork.CartRepo.GetByIdAsync(CartID);
+
+            if (cart.quantity == 0)
             {
                 return RedirectToAction("GetCartsforUser");
             }
-            var cart = await unitOfWork.CartRepo.GetByIdAsync(CartID);
+           
             cart.quantity -= 1;
             await unitOfWork.Complete();
 

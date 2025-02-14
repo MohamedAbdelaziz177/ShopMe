@@ -26,20 +26,24 @@
                 {
                     @**@  <partial name="CartItemPartial" model="@item"></partial>
                     Subtotal += (item.Quantity * item.Price);
-               
-                    cartItems.Add(item);
+                            
                 }
             </tbody>
         </table>
 
         @if (Model != null)
         {
-            <form asp-action="CreateOrder" asp-controller="Order" method="post" class="p-4 bg-light rounded shadow-sm">
+            <form asp-action="CheckOut" asp-controller="Order" method="post" class="p-4 bg-light rounded shadow-sm">
               
 
-                @foreach (var item in Model)
+                @for(int i = 0; i < Model.Count; i++)
                 {
-                    <input type="hidden" name="cartItems[]" value="@Json.Serialize(item)" />
+                    <input type="hidden" name="cartItems[@i].Id" value="@Model[i].Id" />
+                    <input type="hidden" name="cartItems[@i].ProductId" value="@Model[i].ProductId" />
+                    <input type="hidden" name="cartItems[@i].ProductName" value="@Model[i].ProductName" />
+                    <input type="hidden" name="cartItems[@i].Quantity" value="@Model[i].Quantity" />
+                    <input type="hidden" name="cartItems[@i].Price" value="@Model[i].Price" />
+                    <input type="hidden" name="cartItems[@i].UserId" value="@Model[i].UserId" />
                 }
 
                 <div class="d-flex justify-content-center">

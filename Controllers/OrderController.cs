@@ -10,20 +10,37 @@ namespace E_Commerce2.Controllers
         public OrderController(IUnitOfWork unitOfWork)
         {
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        public IActionResult CreateOrder(List<CartVM> cartItems)
+        [HttpPost]
+        public IActionResult CheckOut(List<CartVM> cartItems)
         {
             TempData["CartData"] = JsonConvert.SerializeObject(cartItems);
-            return View();
+            TempData.Keep();
+
+            if(!cartItems.Any())
+                Console.WriteLine("HAHAHA");
+
+            decimal SubTotal = cartItems.Sum(x => x.Quantity * x.Price);
+
+            Console.WriteLine(SubTotal);
+
+            ViewBag.SubTotal = SubTotal;
+
+
+            return View("CheckOut");
+
+           
+        }
+
+        public IActionResult CreateOrder()
+        {
+           return View();
         }
 
         [HttpPost]
         public IActionResult ConfirmOrder()
         {
+
             return RedirectToAction("Index");
         }
 
