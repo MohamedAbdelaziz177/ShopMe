@@ -3,6 +3,7 @@ using E_Commerce2.Services.IServices;
 using E_Commerce2.UnitOfWorkk;
 using E_Commerce2.ViewModels.CartVM_s;
 using E_Commerce2.ViewModels.OderVM_s;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace E_Commerce2.Services.MServices
@@ -16,7 +17,7 @@ namespace E_Commerce2.Services.MServices
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task<Order> CreateOrder(OrderVM order, string UserId)
+        public async Task<Order> CreateOrder(OrderVM order, string UserId, decimal subTotal)
         {
             Order newOrder = new Order();
 
@@ -26,6 +27,7 @@ namespace E_Commerce2.Services.MServices
             newOrder.CreatedAt = DateTime.Now;
             newOrder.CustomerId = UserId;
             newOrder.OrderStatus = "Pending";
+            newOrder.SubTotal = subTotal;
 
             await unitOfWork.OrderRepo.insertAsync(newOrder);
 

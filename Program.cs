@@ -1,4 +1,4 @@
-using E_Commerce2.Data;
+ using E_Commerce2.Data;
 using E_Commerce2.Models;
 using E_Commerce2.Services.IServices;
 using E_Commerce2.Services.MServices;
@@ -6,6 +6,8 @@ using E_Commerce2.UnitOfWorkk;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
+using ProductService = E_Commerce2.Services.MServices.ProductService;
 
 namespace E_Commerce2
 {
@@ -46,9 +48,12 @@ namespace E_Commerce2
     });
 
 
+            var stripeSettings = builder.Configuration.GetSection("Stripe");
+            StripeConfiguration.ApiKey = stripeSettings["SecretKey"];
+
             var app = builder.Build();
 
-
+            
 
 
 
@@ -66,6 +71,8 @@ namespace E_Commerce2
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            
 
             app.Run();
         }

@@ -12,7 +12,9 @@ namespace E_Commerce2.Models
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
 
         [Precision(16, 2)]
-        public decimal ShippingFee { get; set; }
+        public decimal ShippingFee { get; set; } = 12.5M;
+
+        public decimal SubTotal { get; set; } = 0;
 
         public string DeliveryAddress { get; set; } = "";
         public string PaymentMethod { get; set; } = "";

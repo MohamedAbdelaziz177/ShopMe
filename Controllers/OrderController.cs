@@ -52,10 +52,12 @@ namespace E_Commerce2.Controllers
             TempData.Keep("CartData");
             TempData.Keep("SubTotal");
 
+            
+
             string userId = User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0";
            
 
-            Order ord = await orderService.CreateOrder(order, userId);
+            Order ord = await orderService.CreateOrder(order, userId, (decimal)order.SubTotal);
 
             var cartDataJson = TempData["CartData"] as string;
 
