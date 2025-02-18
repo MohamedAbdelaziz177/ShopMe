@@ -35,7 +35,7 @@ namespace E_Commerce2.Services.MServices
         }
 
 
-        public async Task<List<OrderItem>> InsertOrderItems(List<CartVM> cartVMs)
+        public async Task<List<OrderItem>> InsertOrderItems(List<CartVM> cartVMs, int orderId)
         {
             List<OrderItem> items = new List<OrderItem>();
             foreach (var cartItem in cartVMs)
@@ -44,7 +44,8 @@ namespace E_Commerce2.Services.MServices
                 item.UnitPrice = cartItem.Price;
                 item.Quantity = cartItem.Quantity;
                 item.ProductId = cartItem.ProductId;
-
+                item.OrderId = orderId;
+                
                 items.Add(item);
                 await unitOfWork.OrderItemRepo.insertAsync(item);
 

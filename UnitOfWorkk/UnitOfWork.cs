@@ -1,6 +1,8 @@
 ﻿using E_Commerce2.Data;
 using E_Commerce2.Repositories.IRepositories;
 using E_Commerce2.Repositories.MRepositories;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 
 namespace E_Commerce2.UnitOfWorkk
 {
@@ -30,6 +32,11 @@ namespace E_Commerce2.UnitOfWorkk
         public void Dispose() 
         {
             con.Dispose();
+        }
+
+        public async Task<IDbContextTransaction> BeginTransaction()
+        {
+            return await con.Database.BeginTransactionAsync();
         }
     }
 }

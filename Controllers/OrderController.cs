@@ -52,27 +52,42 @@ namespace E_Commerce2.Controllers
             TempData.Keep("CartData");
             TempData.Keep("SubTotal");
 
-            
-
             string userId = User?.FindFirstValue(ClaimTypes.NameIdentifier) ?? "0";
-           
 
-            Order ord = await orderService.CreateOrder(order, userId, (decimal)order.SubTotal);
-
-            var cartDataJson = TempData["CartData"] as string;
-
-            if (cartDataJson == null)
+            using var trx = await unitOfWork.BeginTransaction();
             {
-                return RedirectToAction("Index", "Home");
-            }
 
-            var cartItems = JsonConvert.DeserializeObject<List<CartVM>>(cartDataJson);
+                try
+                {
+                    Order ord = await orderService.CreateOrder(order, userId, (decimal)order.SubTotal);
 
-            var orderItems = await orderService.InsertOrderItems(cartItems);
+                    var cartDataJson = TempData["CartData"] as string;
 
-            ord.Items = orderItems;
+                    if (cartDataJson == null)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
 
-            return RedirectToAction("ConfirmOrder", new { id = ord.Id });
+                    var cartItems = JsonConvert.DeserializeObject<List<CartVM>>(cartDataJson);
+
+                    var orderItems = await orderService.InsertOrderItems(cartItems, ord.Id);
+
+                    ord.Items = orderItems;
+                    await unitOfWork.Complete();
+
+
+                    await trx.CommitAsync();
+
+                    return RedirectToAction("CreatePaymentSession", "Payment", new { id = ord.Id });
+                }
+                catch
+                {
+                    await trx.RollbackAsync();
+                    return RedirectToAction("Index", "Home");
+                }
+
+
+            };
 
         }
 
@@ -87,6 +102,7 @@ namespace E_Commerce2.Controllers
              ordVM.Id = id;
              ordVM.PaymentMethod = ord.PaymentMethod;
              ordVM.DeliveryAddress = ord.DeliveryAddress;
+             ordVM.SubTotal = ord.SubTotal;
              
            
 

@@ -6,7 +6,7 @@ namespace E_Commerce2.Services.IServices
 {
     public interface IOrderService
     {
-        public Task<Order> CreateOrder(OrderVM order, string UserId, decimal subTotal);
-        public  Task<List<OrderItem>> InsertOrderItems(List<CartVM> cartVMs);
+        Task<Order> CreateOrder(OrderVM order, string UserId, decimal subTotal);
+        Task<List<OrderItem>> InsertOrderItems(List<CartVM> cartVMs, int orderId);
     }
 }

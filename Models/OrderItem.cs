@@ -7,6 +7,8 @@ namespace E_Commerce2.Models
         public int Id { get; set; }
         public int Quantity { get; set; }
 
+        public int OrderId {  get; set; }
+
         [Precision(16, 2)]
         public decimal UnitPrice { get; set; }
 

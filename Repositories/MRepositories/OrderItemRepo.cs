@@ -1,6 +1,7 @@
 ﻿using E_Commerce2.Data;
 using E_Commerce2.Models;
 using E_Commerce2.Repositories.IRepositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce2.Repositories.MRepositories
 {
@@ -10,6 +11,9 @@ namespace E_Commerce2.Repositories.MRepositories
         {
         }
 
-
+        public OrderItem GetItemWithName(int id)
+        {
+            return dbset.Include(o => o.Product).FirstOrDefault(o => o.Id == id);
+        }
     }
 }

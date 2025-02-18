@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using Stripe.V2;
+using System.Security.Cryptography.Xml;
 
 namespace E_Commerce2.Controllers
 {
@@ -15,32 +16,84 @@ namespace E_Commerce2.Controllers
         {
             this.configuration = configuration;
             this.unitOfWork = unitOfWork;
-            domain = "http://localhost:5001";
+           // domain = $"{Request.Scheme}://{Request.Host}";
         }
 
 
+        //[HttpPost("CreatePaymentSession")]
+        public async Task<IActionResult> CreatePaymentSession(int id)
+        {
+            var order = await unitOfWork.OrderRepo.GetOrderItemsByOrderId(id);
+
+            if (order == null)
+            {
+                Console.WriteLine("Product is null");
+            }
+            
+            var lineItems = new List<SessionLineItemOptions>();
         
-     //public async Task<IActionResult> CreatePaymentSession(int id)
-     //{
-     //    var order = await unitOfWork.OrderRepo.GetByIdAsync(id);
-     //
-     //    var options = new SessionCreateOptions
-     //    {
-     //        PaymentMethodTypes = new List<string> { "Card" },
-     //        Mode = "Payment",
-     //        SuccessUrl = $"{domain}/Payment/Success",
-     //        CancelUrl = $"{domain}/Payment/Cancel",
-     //
-     //        LineItems = new List<SessionLineItemOptions>()
-     //
-     //    };
-     //
-     //    foreach (var orderItem in order.Items) 
-     //    {
-     //
-     //    }
-     //}
-         
+            foreach (var item in order.Items)
+            {
+                if (item == null)
+                {
+                    Console.WriteLine("item is null");
+                }
+
+                if (item.Product == null)
+                {
+                    Console.WriteLine("item.Product is null");
+                }
+
+                lineItems.Add(new SessionLineItemOptions()
+                {
+                    PriceData = new SessionLineItemPriceDataOptions()
+                    {
+                        Currency = "usd",
+                        UnitAmountDecimal = item.UnitPrice * 100,
+
+                        ProductData = new SessionLineItemPriceDataProductDataOptions()
+                        {
+                            Name = !string.IsNullOrEmpty(item.Product?.Name) ? item.Product.Name : "Unnamed Product"
+                        }
+                    },
+
+                    Quantity = item.Quantity,
+                });
+            
+            }
+
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string> { "card" },
+                Mode = "payment",
+                SuccessUrl = $"{Request.Scheme}://{Request.Host}/Payment/Success",
+                CancelUrl = $"{Request.Scheme}://{Request.Host}/Payment/Cancel",
+
+                LineItems = lineItems,
+
+            };
+        
+        
+                var service = new SessionService();
+                var Session = service.Create(options);
+
+            Console.WriteLine(Session.Url);
+        
+                return Redirect(Session.Url);
+            
+        }
+
+        public IActionResult Success()
+        {
+
+            return View();
+        }
+
+        public IActionResult Cancel()
+        {
+            return View();
+        }
+
 
     }
 }

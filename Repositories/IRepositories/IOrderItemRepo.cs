@@ -4,6 +4,6 @@ namespace E_Commerce2.Repositories.IRepositories
 {
     public interface IOrderItemRepo : IGenericRepo<OrderItem>
     {
-
+         OrderItem GetItemWithName(int id);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using E_Commerce2.Repositories.IRepositories;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 
 namespace E_Commerce2.UnitOfWorkk
 {
@@ -12,5 +14,6 @@ namespace E_Commerce2.UnitOfWorkk
         IOrderItemRepo OrderItemRepo { get; }
 
         Task<int> Complete();
+        Task<IDbContextTransaction> BeginTransaction();
     }
 }
