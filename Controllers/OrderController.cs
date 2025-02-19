@@ -109,7 +109,9 @@ namespace E_Commerce2.Controllers
         {
             var Order = await unitOfWork.OrderRepo.GetByIdAsync(id);
 
-            //RefundOrder();
+            if (Order == null) return NotFound();
+
+            await RefundOrder(Order.PaymentIntentId);
 
             Order.OrderStatus = "Canceled";
 
@@ -118,9 +120,28 @@ namespace E_Commerce2.Controllers
             return View();
         }
 
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ShipOrder(int id)
+        {
+            var Order = await unitOfWork.OrderRepo.GetByIdAsync(id);
+
+            if (Order == null) return NotFound();
+
+            Order.OrderStatus = "Shipped";
+
+            await unitOfWork.Complete();
+
+            return View("GetShippedOrders");
+
+        }
+
         public async Task<IActionResult> GetOrdersByUserId()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (userId == null) return NotFound();
+
             var orders = await unitOfWork.OrderRepo.GetOrdersByUserID(userId);
 
             return View(orders);
@@ -136,7 +157,7 @@ namespace E_Commerce2.Controllers
         }
 
        
-        public void RefundOrder(string intentId)
+        public async Task RefundOrder(string intentId)
         {
             var RefundOptions = new RefundCreateOptions()
             {
@@ -144,7 +165,7 @@ namespace E_Commerce2.Controllers
             };
 
             var RefundService = new RefundService();
-            RefundService.Create(RefundOptions);
+            await RefundService.CreateAsync(RefundOptions);
         }
 
     }

@@ -25,7 +25,7 @@ namespace E_Commerce2.Repositories.MRepositories
                                                     .ThenInclude(i => i.Product)
                                                     .FirstOrDefaultAsync(o => o.Id == id);
 
-
+            
             if (OrderWithItemsAndProduct != null)
             {
                 Console.WriteLine("HHHHHH");
@@ -34,6 +34,8 @@ namespace E_Commerce2.Repositories.MRepositories
                 Console.WriteLine(OrderWithItemsAndProduct.Items[0].Product.Price );
                 Console.WriteLine(OrderWithItemsAndProduct.Items[0].Product.Name + "444");
             }
+             
+          
                                      
 
             return OrderWithItemsAndProduct;
@@ -42,7 +44,11 @@ namespace E_Commerce2.Repositories.MRepositories
 
         public async Task<List<Order>> GetOrdersByUserID(string id)
         {
-            return await dbset.Where(o => o.CustomerId == id).Include(o => o.Items).ThenInclude(i => i.Product).ToListAsync();
+            var lst = await dbset.Where(o => o.CustomerId == id)
+                              .Include(o => o.Items)
+                              .ThenInclude(i => i.Product)
+                              .ToListAsync();
+            return lst;
         }
     }
 }

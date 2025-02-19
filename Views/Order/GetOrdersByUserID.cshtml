@@ -1,5 +1,5 @@
-﻿
-@model List<Order>
+﻿@model List<Order>
+
 <h3 class="text-center mb-4">List of Orders</h3>
 
 <table class="table">
@@ -12,6 +12,7 @@
             <th>Order Status</th>
             <th>Date</th>
             <th>Action</th>
+            <th>Cancel Order</th> 
         </tr>
     </thead>
 
@@ -20,57 +21,32 @@
         {
             int count = 0;
             decimal total = order.ShippingFee;
+
             foreach (OrderItem item in order.Items)
             {
                 count += item.Quantity;
                 total += item.Quantity * item.UnitPrice;
             }
 
+            string paymentBadgeColor = order.PaymentStatus switch
+            {
+                "pending" => "bg-warning text-dark",
+                "accepted" => "bg-success",
+                "canceled" => "bg-secondary",
+                _ => "bg-danger"
+            };
 
-            string paymentBadgeColor = "bg-danger";
-            if (order.PaymentStatus == "pending")
+            string orderBadgeColor = order.OrderStatus switch
             {
-                paymentBadgeColor = "bg-warning text-dark";
-            }
-            else if (order.PaymentStatus == "accepted")
-            {
-                paymentBadgeColor = "bg-success";
-            }
-            else if (order.PaymentStatus == "canceled")
-            {
-                paymentBadgeColor = "bg-secondary";
-            }
-
-
-            string orderBadgeColor = "bg-danger";
-            if (order.OrderStatus == "created")
-            {
-                orderBadgeColor = "bg-warning text-dark";
-            }
-            else if (order.OrderStatus == "accepted")
-            {
-                orderBadgeColor = "bg-success";
-            }
-            else if (order.OrderStatus == "canceled")
-            {
-                orderBadgeColor = "bg-secondary";
-            }
-            else if (order.OrderStatus == "shipped")
-            {
-                orderBadgeColor = "bg-primary";
-            }
-            else if (order.OrderStatus == "delivered")
-            {
-                orderBadgeColor = "bg-success";
-            }
-            else if (order.OrderStatus == "returned")
-            {
-                orderBadgeColor = "bg-info text-dark";
-            }
-            else if (order.OrderStatus == "deleted")
-            {
-                orderBadgeColor = "bg-dark";
-            }
+                "created" => "bg-warning text-dark",
+                "accepted" => "bg-success",
+                "shipped" => "bg-primary",
+                "delivered" => "bg-success",
+                "returned" => "bg-info text-dark",
+                "canceled" => "bg-secondary",
+                "deleted" => "bg-dark",
+                _ => "bg-danger"
+            };
 
             <tr>
                 <td>@count</td>
@@ -80,8 +56,24 @@
                 <td><span class="badge rounded-pill @orderBadgeColor">@order.OrderStatus</span></td>
                 <td>@order.CreatedAt.ToString("MM/dd/yyyy")</td>
                 <td>
-                    <a class="btn btn-primary btn-sm" asp-controller="Order" asp-action="GetOrderByID"
-                       asp-route-id="@order.Id">Details</a>
+                    <a class="btn btn-primary btn-sm" asp-controller="Order" asp-action="GetOrderByID" asp-route-id="@order.Id">
+                        Details
+                    </a>
+                </td>
+                <td>
+                    @if (order.OrderStatus == "Created" || order.OrderStatus == "Pending")
+                    {
+                        <form asp-controller="Order" asp-action="CancelOrder" method="post" class="d-inline">
+                            <input type="hidden" name="id" value="@order.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this order?');">
+                                Cancel
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">N/A</span>
+                    }
                 </td>
             </tr>
         }

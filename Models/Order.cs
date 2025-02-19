@@ -23,6 +23,6 @@ namespace E_Commerce2.Models
         public string OrderStatus { get; set; } = "";
         public DateTime CreatedAt { get; set; }
 
-        public string? PaymentIntentId { get; set; }
+        public string? PaymentIntentId { get; set; } 
     }
 }

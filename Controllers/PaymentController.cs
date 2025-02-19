@@ -1,5 +1,6 @@
 ﻿using E_Commerce2.UnitOfWorkk;
 using Microsoft.AspNetCore.Mvc;
+using Stripe;
 using Stripe.Checkout;
 using Stripe.V2;
 using System.Security.Cryptography.Xml;
@@ -29,7 +30,25 @@ namespace E_Commerce2.Controllers
             {
                 Console.WriteLine("Product is null");
             }
-            
+
+            /*
+             
+             var payIntentOptions = new PaymentIntentCreateOptions()
+            {
+                Currency = "usd",
+                Amount = (long)order.SubTotal * 100,
+                PaymentMethodTypes = new List<string>() { "card" }
+
+
+            };
+
+
+            var payIntentService = new PaymentIntentService();
+            var paymentIntent = await payIntentService.CreateAsync(payIntentOptions);
+
+             */
+
+
             var lineItems = new List<SessionLineItemOptions>();
         
             foreach (var item in order.Items)
@@ -54,10 +73,13 @@ namespace E_Commerce2.Controllers
                         ProductData = new SessionLineItemPriceDataProductDataOptions()
                         {
                             Name = !string.IsNullOrEmpty(item.Product?.Name) ? item.Product.Name : "Unnamed Product"
-                        }
+                        },
+
+                        
                     },
 
                     Quantity = item.Quantity,
+                    
                 });
             
             }
@@ -68,18 +90,24 @@ namespace E_Commerce2.Controllers
                 Mode = "payment",
                 SuccessUrl = $"{Request.Scheme}://{Request.Host}/Payment/Success",
                 CancelUrl = $"{Request.Scheme}://{Request.Host}/Payment/Cancel",
+                
 
                 LineItems = lineItems,
 
             };
         
         
-                var service = new SessionService();
-                var Session = service.Create(options);
+            var service = new SessionService();
+            var Session = service.Create(options);
 
-                
+            Console.WriteLine($"Session ID: {Session.Id}");
+            Console.WriteLine($"PaymentIntentId: {Session.PaymentIntentId}");
+
+            order.PaymentIntentId = Session.PaymentIntentId;
+            await unitOfWork.OrderRepo.updateAsync(order);
+           
         
-                return Redirect(Session.Url);
+            return Redirect(Session.Url);
             
         }
 
