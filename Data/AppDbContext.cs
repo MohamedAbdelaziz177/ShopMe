@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace E_Commerce2.Data
 {
@@ -14,9 +15,12 @@ namespace E_Commerce2.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-       DbSet<Product> Products { get; set; }
-       DbSet<Cart> Carts { get; set; }
-       DbSet<OrderItem> OrderItems { get; set; }
-       DbSet<Order> Orders { get; set; }
+     
+       
+
+        public DbSet<Product> Products { get; set; }
+       public DbSet<Cart> Carts { get; set; }
+       public DbSet<OrderItem> OrderItems { get; set; }
+       public DbSet<Order> Orders { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using E_Commerce2.ViewModels.OderVM_s;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Stripe;
 using System.Security.Claims;
 
 namespace E_Commerce2.Controllers
@@ -91,38 +92,60 @@ namespace E_Commerce2.Controllers
 
         }
 
-       
-        public async Task<IActionResult> ConfirmOrder(int id)
-        {
-             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
-             Order ord = await unitOfWork.OrderRepo.GetByIdAsync(id);
+        
+        //public async Task<IActionResult> ConfirmOrder(int id)
+        //{
+        //
+        //   var Order = await unitOfWork.OrderRepo.GetByIdAsync(id);
+        //   Order.OrderStatus = "Confirmed";
+        //   await unitOfWork.Complete();
+        //
+        //   return View();
+        //}
+         
 
-             OrderVM ordVM = new OrderVM();
-             ordVM.Id = id;
-             ordVM.PaymentMethod = ord.PaymentMethod;
-             ordVM.DeliveryAddress = ord.DeliveryAddress;
-             ordVM.SubTotal = ord.SubTotal;
-             
-           
-
-            return View(ordVM);
-        }
-
-        public IActionResult GetOrderByID(int id)
-        {
-            var Order = unitOfWork.OrderRepo.GetByIdAsync(id);
-            return View(Order);
-        }
 
         public async Task<IActionResult> CancelOrder(int id)
         {
             var Order = await unitOfWork.OrderRepo.GetByIdAsync(id);
+
+            //RefundOrder();
+
             Order.OrderStatus = "Canceled";
+
+            await unitOfWork.Complete();
 
             return View();
         }
 
+        public async Task<IActionResult> GetOrdersByUserId()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var orders = await unitOfWork.OrderRepo.GetOrdersByUserID(userId);
+
+            return View(orders);
+            
+        }
+
+        public async Task<IActionResult> GetOrderByID(int id)
+        {
+
+            //GetOrderItemsByOrderId(int id)
+            var Order = await unitOfWork.OrderRepo.GetOrderItemsByOrderId(id);
+            return View(Order);
+        }
+
+       
+        public void RefundOrder(string intentId)
+        {
+            var RefundOptions = new RefundCreateOptions()
+            {
+                PaymentIntent = intentId,
+            };
+
+            var RefundService = new RefundService();
+            RefundService.Create(RefundOptions);
+        }
 
     }
 }

@@ -77,7 +77,7 @@ namespace E_Commerce2.Controllers
                 var service = new SessionService();
                 var Session = service.Create(options);
 
-            Console.WriteLine(Session.Url);
+                
         
                 return Redirect(Session.Url);
             

@@ -45,7 +45,7 @@ namespace E_Commerce2.Services.MServices
                 item.Quantity = cartItem.Quantity;
                 item.ProductId = cartItem.ProductId;
                 item.OrderId = orderId;
-                
+                item.Product = await unitOfWork.ProductRepo.GetByIdAsync(cartItem.ProductId);
                 items.Add(item);
                 await unitOfWork.OrderItemRepo.insertAsync(item);
 

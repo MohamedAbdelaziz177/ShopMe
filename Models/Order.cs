@@ -22,5 +22,7 @@ namespace E_Commerce2.Models
         public string PaymentDetails { get; set; } = ""; 
         public string OrderStatus { get; set; } = "";
         public DateTime CreatedAt { get; set; }
+
+        public string? PaymentIntentId { get; set; }
     }
 }
