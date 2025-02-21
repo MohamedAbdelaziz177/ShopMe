@@ -35,8 +35,9 @@ namespace E_Commerce2.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Register(string? returnUrl)
         {
+            TempData.Keep("returnUrl");
             return View();
         }
 
@@ -44,7 +45,9 @@ namespace E_Commerce2.Controllers
         [AutoValidateAntiforgeryToken]
         public async  Task<IActionResult> SaveRegister(UserRegisterVM userVM)
         {
-            if(!ModelState.IsValid) 
+            TempData.Keep("returnUrl");
+
+            if (!ModelState.IsValid) 
             {
                 return View("Register", userVM);
             }
@@ -87,6 +90,7 @@ namespace E_Commerce2.Controllers
         [HttpGet]
         public IActionResult Login(string? returnUrl) 
         {
+            TempData["returnUrl"] = returnUrl;
             return View();
         }
 
@@ -94,6 +98,8 @@ namespace E_Commerce2.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> SaveLogin(UserLoginVM user)
         {
+            TempData.Keep("returnUrl");
+
             if (!ModelState.IsValid) 
                 return View("Login", user);
             
@@ -108,7 +114,11 @@ namespace E_Commerce2.Controllers
             if (isValid) 
             {
                 await signInManager.SignInAsync(userExists, user.RememberMe);
-                return RedirectToAction("Index", "Home");
+
+                if (!string.IsNullOrEmpty((string?)TempData["returnUrl"]))
+                    return Redirect((string)TempData["returnUrl"]);
+
+                else return RedirectToAction("Index", "Home");
 
             }
 
