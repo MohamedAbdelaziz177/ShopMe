@@ -83,3 +83,9 @@ ShopMe is an E-Commerce web application built using the ASP.NET MVC framework. I
 
 ### Applying Search
 ![Searched Products](screenshots/search.png)
+
+### Stripe Page
+![Payment using stripe](screenshots/payment.png)
+
+### Profile Page
+![Profile with Edit Buttons](screenshots/profile.png)
