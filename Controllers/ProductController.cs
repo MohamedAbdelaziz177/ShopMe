@@ -24,7 +24,7 @@ namespace E_Commerce2.Controllers
         }
 
 
-        public async Task<IActionResult> Index(string search, int pageIndex = 0)
+        public async Task<IActionResult> Index(string? search)
         {
             var lst = await unitOfWork.ProductRepo.GetAllAsync();
             lst = lst.OrderByDescending(x => x.Id).ToList();
@@ -33,18 +33,9 @@ namespace E_Commerce2.Controllers
 
             if (search != null)
                 lst = lst.Where(x => x.Name.Contains(search) || x.Brand.Contains(search)).ToList();
-
-            if (pageIndex < 1)
-            {
-                ViewData["search"] = search;
+ 
                 return View(lst);
-            }
-
-            else
-            {
-                lst = lst.Skip(PageSize * (pageIndex - 1)).Take(PageSize).ToList();
-                return View(lst);
-            }
+            
         }
 
         public async Task <IActionResult> GetNewestProducts(string? search, string? cat, string? brand, string? sorting ,int pageIndex = 1)
@@ -161,14 +152,29 @@ namespace E_Commerce2.Controllers
             return View(prodVM);
         }
 
-        /*
+        
         [HttpPost]
-        public async Task<IActionResult> SaveEdit(ProductCreateUpdateVM prod)
+        public async Task<IActionResult> SaveEdit(int id, ProductVM prod)
         {
+            if (!ModelState.IsValid)
+                return View("EditProduct", prod);
+
             var product = await unitOfWork.ProductRepo.GetByIdAsync(id);
+
+            product.Description = prod.Description;
+            product.Name = prod.Name;
+            product.Price = prod.Price;
+
+            if(prod.ImageFileName != null)
+            product.ImageFileName = await productService.CreateImgUrl(prod.ImageFile);
+
+            await unitOfWork.Complete();
+
+            return RedirectToAction("Index");
+
         }
 
-        */
+        
 
         public async Task<IActionResult> DeleteProduct(int id)
         {

@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\Images\\products\\2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\3026d444-277d-4d8c-93d8-d8af95676ad5.png",
+      "PackagePath": "staticwebassets\\Images\\products\\3026d444-277d-4d8c-93d8-d8af95676ad5.png"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif",
       "PackagePath": "staticwebassets\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif"
     },
@@ -125,12 +129,20 @@
       "PackagePath": "staticwebassets\\Images\\products\\75241241.jpg"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\770f385a-f240-4b5b-870b-2e62aec445d8.png",
+      "PackagePath": "staticwebassets\\Images\\products\\770f385a-f240-4b5b-870b-2e62aec445d8.png"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\80522267.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\80522267.jpg"
     },
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\81882367.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\81882367.jpg"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\833fe3d9-05a1-40ff-8c13-1574fe2e4954.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\833fe3d9-05a1-40ff-8c13-1574fe2e4954.jpg"
     },
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\83655305.jpg",
@@ -165,8 +177,16 @@
       "PackagePath": "staticwebassets\\Images\\products\\bd04878c-3539-49b4-b011-8e3124d000df.jpg"
     },
     {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\c15028b6-d875-47a7-afc2-9fee1058f873.png",
+      "PackagePath": "staticwebassets\\Images\\products\\c15028b6-d875-47a7-afc2-9fee1058f873.png"
+    },
+    {
       "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\d425a3d6-bd0d-4c7d-9352-838be5ae4956.jpg",
       "PackagePath": "staticwebassets\\Images\\products\\d425a3d6-bd0d-4c7d-9352-838be5ae4956.jpg"
+    },
+    {
+      "Id": "F:\\E-Commerce2\\wwwroot\\Images\\products\\eb562187-5b0b-4ab0-bbcf-eb59cf95cc30.jpg",
+      "PackagePath": "staticwebassets\\Images\\products\\eb562187-5b0b-4ab0-bbcf-eb59cf95cc30.jpg"
     },
     {
       "Id": "F:\\E-Commerce2\\wwwroot\\css\\site.css",

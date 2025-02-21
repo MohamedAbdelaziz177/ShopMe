@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "x85tQBzDhqaGwMkXWnUXv6F/DtVDIfi7oBY3U8rzoL8=",
+  "Hash": "7jITMGPO14ulwKhdmCQB59oFjBQt3qumAYSaNDoJ/Bs=",
   "Source": "E-Commerce2",
   "BasePath": "_content/E-Commerce2",
   "Mode": "Default",
@@ -378,6 +378,25 @@
       "OriginalItemSpec": "wwwroot\\Images\\products\\2ad8d9ac-63d0-468b-9d85-af1d99936b84.jpg"
     },
     {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\3026d444-277d-4d8c-93d8-d8af95676ad5.png",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/products/3026d444-277d-4d8c-93d8-d8af95676ad5.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\products\\3026d444-277d-4d8c-93d8-d8af95676ad5.png"
+    },
+    {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\333b64b2-470f-475a-aba3-9138c4109382_1.avif",
       "SourceId": "E-Commerce2",
       "SourceType": "Discovered",
@@ -663,6 +682,25 @@
       "OriginalItemSpec": "wwwroot\\Images\\products\\75241241.jpg"
     },
     {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\770f385a-f240-4b5b-870b-2e62aec445d8.png",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/products/770f385a-f240-4b5b-870b-2e62aec445d8.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\products\\770f385a-f240-4b5b-870b-2e62aec445d8.png"
+    },
+    {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\80522267.jpg",
       "SourceId": "E-Commerce2",
       "SourceType": "Discovered",
@@ -699,6 +737,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\products\\81882367.jpg"
+    },
+    {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\833fe3d9-05a1-40ff-8c13-1574fe2e4954.jpg",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/products/833fe3d9-05a1-40ff-8c13-1574fe2e4954.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\products\\833fe3d9-05a1-40ff-8c13-1574fe2e4954.jpg"
     },
     {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\83655305.jpg",
@@ -853,6 +910,25 @@
       "OriginalItemSpec": "wwwroot\\Images\\products\\bd04878c-3539-49b4-b011-8e3124d000df.jpg"
     },
     {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\c15028b6-d875-47a7-afc2-9fee1058f873.png",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/products/c15028b6-d875-47a7-afc2-9fee1058f873.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\products\\c15028b6-d875-47a7-afc2-9fee1058f873.png"
+    },
+    {
       "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\d425a3d6-bd0d-4c7d-9352-838be5ae4956.jpg",
       "SourceId": "E-Commerce2",
       "SourceType": "Discovered",
@@ -870,6 +946,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\products\\d425a3d6-bd0d-4c7d-9352-838be5ae4956.jpg"
+    },
+    {
+      "Identity": "F:\\E-Commerce2\\wwwroot\\Images\\products\\eb562187-5b0b-4ab0-bbcf-eb59cf95cc30.jpg",
+      "SourceId": "E-Commerce2",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\E-Commerce2\\wwwroot\\",
+      "BasePath": "_content/E-Commerce2",
+      "RelativePath": "Images/products/eb562187-5b0b-4ab0-bbcf-eb59cf95cc30.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\products\\eb562187-5b0b-4ab0-bbcf-eb59cf95cc30.jpg"
     },
     {
       "Identity": "F:\\E-Commerce2\\wwwroot\\js\\site.js",
