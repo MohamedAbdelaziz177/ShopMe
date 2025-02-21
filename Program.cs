@@ -25,15 +25,22 @@ namespace E_Commerce2
                 .UseSqlServer(builder.Configuration.GetConnectionString("cs")));
 
 
-            builder.Services.AddIdentity<AppUser, IdentityRole>( options =>
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
             {
-                      options.Password.RequiredLength = 6;
-                      options.Password.RequireNonAlphanumeric = false;
-                      options.Password.RequireUppercase = false;
-                      options.Password.RequireLowercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
             })
-    .AddEntityFrameworkStores<AppDbContext>();
+    .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Auth/Login"; 
+                options.AccessDeniedPath = "/Auth/Login";
+            });
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IProductService, ProductService>();
@@ -41,12 +48,7 @@ namespace E_Commerce2
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
 
-            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/Account/Login"; // Redirect here when unauthorized
-    });
-
+           
 
             var stripeSettings = builder.Configuration.GetSection("Stripe");
             StripeConfiguration.ApiKey = stripeSettings["SecretKey"];
@@ -66,6 +68,7 @@ namespace E_Commerce2
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

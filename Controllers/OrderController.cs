@@ -113,6 +113,8 @@ namespace E_Commerce2.Controllers
 
             await RefundOrder(Order.PaymentIntentId);
 
+            Console.WriteLine(Order.PaymentIntentId);
+
             Order.OrderStatus = "Canceled";
 
             await unitOfWork.Complete();
